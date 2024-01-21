@@ -14,14 +14,50 @@ class Graph:
 
     def bfs(self, start, end=None):
         """
-        TODO: write a method that performs a breadth first traversal and pathfinding on graph G
+        A method that performs a breadth first traversal and pathfinding
 
         * If there's no end node input, return a list nodes with the order of BFS traversal
         * If there is an end node input and a path exists, return a list of nodes with the order of the shortest path
         * If there is an end node input and a path does not exist, return None
 
         """
-        return
+
+        if start not in self.graph:
+            raise Exception('The start node is not in the graph')
+        elif end != None and end not in self.graph:
+            raise Exception('The end node is not in the graph')
+
+        queue = []
+        visited = [start]
+        parents = {start: None}
+
+        queue.append(start)
+
+        while len(queue) > 0:
+            v = queue.pop(0)
+            for nbr in self.graph.successors(v):
+                if nbr not in visited:
+                    visited.append(nbr)
+                    queue.append(nbr)
+                    parents[nbr] = v
+
+        # if no end node is provided, return the BFS ordering
+        if end == None:
+            return visited
+        
+        # if an end node is provided and it was visited, return the shortest path
+        elif end != None and end in visited:
+            path = []
+            v = end
+            while v != None:
+                path.append(v)
+                v = parents[v]
+            return path
+        
+        # if an end node is provided but wasn't visited, return None
+        else:
+            return None
+        
 
 
 
