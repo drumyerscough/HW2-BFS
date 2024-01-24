@@ -11,7 +11,7 @@ def test_bfs_traversal():
     that all nodes are being traversed (ie. returns 
     the right number of nodes, in the right order, etc.)
     """
-    g = graph.Graph('tiny_network.adjlist')
+    g = graph.Graph('data/tiny_network.adjlist')
     my_bfs = g.bfs('Nevan Krogan')
     nx_bfs = list(nx.bfs_tree(g.graph, 'Nevan Krogan').nodes()) 
 
@@ -33,7 +33,7 @@ def test_bfs():
     Include an additional test for nodes that are not connected 
     which should return None. 
     """
-    g = graph.Graph('citation_network.adjlist')
+    g = graph.Graph('data/citation_network.adjlist')
 
     for node1 in g.graph.nodes():
         for node2 in g.graph.nodes():
@@ -56,7 +56,7 @@ def test_bfs_exceptions():
     and does not run when given bad inputs, e.g. nodes that aren't in
     the graph.
     """
-    g = graph.Graph('citation_network.adjlist')
+    g = graph.Graph('data/citation_network.adjlist')
 
     # check that an exception is raised if the start node is not in the graph
     with pytest.raises(Exception):
