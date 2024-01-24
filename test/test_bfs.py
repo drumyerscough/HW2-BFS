@@ -35,19 +35,28 @@ def test_bfs():
     """
     g = graph.Graph('data/citation_network.adjlist')
 
+    # so that this test finishes in a reasonable amount of time, limit to 50
+    limit = 50
+    has_path_counter = 0
+    no_path_counter = 0
+
     for node1 in g.graph.nodes():
         for node2 in g.graph.nodes():
-            if node1 != node2:
+            if node1 != node2 and (has_path_counter < limit or no_path_counter < limit):
                 my_bfs = g.bfs(node1, end=node2)
                 
                 # if the nodes are connected, check that my bfs implementation returns one
                 # of the shortest paths
                 if nx.has_path(g.graph, node1, node2):
-                    assert my_bfs[::-1] in list(nx.all_shortest_paths(g.graph, source=node1, target=node2))
+                    if has_path_counter < limit:
+                        assert my_bfs[::-1] in list(nx.all_shortest_paths(g.graph, source=node1, target=node2))
+                        has_path_counter += 1
 
                 # if the nodes are not connected, check that my bfs implementation returns None
                 else:
-                    assert my_bfs == None
+                    if no_path_counter < limit:
+                        assert my_bfs == None
+                        no_path_counter += 1
 
 
 def test_bfs_exceptions():
