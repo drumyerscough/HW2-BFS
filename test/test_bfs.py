@@ -43,7 +43,7 @@ def test_bfs():
                 # if the nodes are connected, check that my bfs implementation returns one
                 # of the shortest paths
                 if nx.has_path(node1, node2):
-                    assert my_bfs in set(nx.all_shortest_paths(g.graph))
+                    assert my_bfs in list(nx.all_shortest_paths(g.graph))
 
                 # if the nodes are not connected, check that my bfs implementation returns None
                 else:
