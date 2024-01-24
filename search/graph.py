@@ -21,18 +21,20 @@ class Graph:
         * If there is an end node input and a path does not exist, return None
 
         """
-
+        
+        # check edge cases where start and end nodes are not in the graph
         if start not in self.graph:
             raise Exception('The start node is not in the graph')
         elif end != None and end not in self.graph:
             raise Exception('The end node is not in the graph')
 
+        # initialize the queue, list of visited nodes, and a mapping of nodes to their parents in the BFS traversal
         queue = []
         visited = [start]
         parents = {start: None}
 
+        # do BFS
         queue.append(start)
-
         while len(queue) > 0:
             v = queue.pop(0)
             for nbr in self.graph.successors(v):
