@@ -29,12 +29,11 @@ class Graph:
             raise Exception('The end node is not in the graph')
 
         # initialize the queue, list of visited nodes, and a mapping of nodes to their parents in the BFS traversal
-        queue = []
+        queue = [start]
         visited = [start]
         parents = {start: None}
 
         # do BFS
-        queue.append(start)
         while len(queue) > 0:
             v = queue.pop(0)
             for nbr in self.graph.successors(v):

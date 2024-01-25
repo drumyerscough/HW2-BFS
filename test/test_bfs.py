@@ -5,11 +5,11 @@ import networkx as nx
 
 def test_bfs_traversal():
     """
-    Write your unit test for a breadth-first
-    traversal here. Create an instance of your Graph class 
-    using the 'tiny_network.adjlist' file and assert 
-    that all nodes are being traversed (ie. returns 
-    the right number of nodes, in the right order, etc.)
+    Tests to make sure that the BFS method correctly returns a
+    BFS ordering starting from a selected node. This test reads
+    in the 'tiny_network.adjlist' graph and compares the length and
+    ordering to those obtained using the corresponding networkx 
+    function.
     """
     g = graph.Graph('data/tiny_network.adjlist')
     my_bfs = g.bfs('Nevan Krogan')
@@ -24,14 +24,13 @@ def test_bfs_traversal():
 
 def test_bfs():
     """
-    Write your unit test for your breadth-first 
-    search here. You should generate an instance of a Graph
-    class using the 'citation_network.adjlist' file 
-    and assert that nodes that are connected return 
-    a (shortest) path between them.
-    
-    Include an additional test for nodes that are not connected 
-    which should return None. 
+    Tests to make sure that the BFS method correctly returns a
+    shortest path between nodes that are connected and does not
+    return a path for nodes that are not connected. This test reads
+    in the 'citation_network.adjlist' graph and compares the paths
+    (or absence thereof) to those obtained using the corresponding
+    networkx functions until 50 pairs of reachable nodes and 50 pairs
+    of unreachable nodes have been tested.
     """
     g = graph.Graph('data/citation_network.adjlist')
 

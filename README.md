@@ -1,3 +1,5 @@
+! [BuildStatus] (https://github.com/drumyerscough/HW2-BFS/workflows/HW2-BFS/badge.svg?event=push)
+
 # Assignment 2
 Breadth-first search
 
@@ -7,41 +9,13 @@ The purpose of this assignment is to get you comfortable working with graph stru
 # Assignment Tasks
 
 ## Coding Assessment
-In search/graph.py:
-* Define the function bfs that takes in a graph, start node, and optional node and:
-	* If no end node is provided, returns a list of nodes in order of breadth-first search traversal from the given start node
-	* If an end node is provided and a path exists, returns a list of nodes in order of the shortest path to the end node
-	* If an end node is provided and a path does not exist, returns None
-* Be sure that your code can handle possible edge cases, e.g.:
-	* running bfs traversal on an empty graph
-	* running bfs traversal on an unconnected graph
-	* running bfs from a start node that does not exist in the graph
-	* running bfs search for an end node that does not exist in the graph
-	* any other edge cases you can think of 
-
-In test/test_bfs.py:
-* Write unit tests for breadth-first traversal and breadth-first search 
-* You may use the two networks provided in the data folder or create your own for testing
-* Test at least 2 possible edge cases (listed above)
-* Include a test case that fails and raises an exception
-
 
 ## Software Development Assessment
 
-* Write unit tests (in the test_bfs.py file) for your breadth first search
-* Replace these instructions with a brief description of bfs in your forked repo
-	
-* Automate Testing with a [Github Actions](https://docs.github.com/en/actions)
-
-	See blogposts below on helping set up github actions with pytest:
-	
-	* [post 1](https://blog.dennisokeeffe.com/blog/2021-08-08-pytest-with-github-actions)
-	* [post 2](https://mattsegal.dev/pytest-on-github-actions.html)
-	* Add "! [BuildStatus] (https://github.com/ < your-github-username > /HW2-BFS/workflows/HW2-BFS/badge.svg?event=push)" (update link and remove spaces) to the beginning of your readme file
-	* Also refer to previous assignment for more in-depth help with GitHub actions
-
-	Ensure that the github actions complete the following:
-	* runs pytest
+This repo contains a module called search, which includes a Graph class that is wrapper for a networkx directed graph and has a method that implements breadth-first search (BFS), with options to return a BFS ordering of all nodes that are reachable from the start node or a shortest path between two nodes, if one exists. BFS is implemented as such:
+* Initialize a queue, a list to hold visited nodes, and a dictionary to hold parent:child mappings from the search.
+* While the queue contains at least one node, pop a node from the queue and iterate over its neighbors. For each neighbor that has not been visited, add the neighbor to the queue, the visited list, and the parents mapping (with the neighbor as the key and its parent as the value). 
+* If an end node was provided in the arguments for the BFS method and was found in the search, return the path from start node to end node by iterating through the parents mapping. This path may not be unique. If the end node was not found, return None. If no end node was specified, return a BFS ordering of the nodes from the visited list. This ordering may also not be unique.
 
 # Getting Started
 To get started you will need to fork this repository onto your own github. You will then work on the code base from your own repo and make changes to it in the form of commits. 
